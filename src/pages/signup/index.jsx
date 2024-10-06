@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../footer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Swal from "sweetalert2"; // Import SweetAlert
 
 const SignUp = () => {
@@ -10,6 +11,16 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false); // State untuk loading
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Cek apakah pengguna sudah login
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+      navigate("/"); // Arahkan ke halaman utama jika sudah login
+    }
+  }, [navigate]);
 
   const register = async () => {
     setLoading(true); // Mulai loading saat register

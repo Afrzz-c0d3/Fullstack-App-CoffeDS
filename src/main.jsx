@@ -6,6 +6,7 @@ import SignIn from './pages/signin';
 import SignUp from './pages/signup';
 import Homepage from './pages/homepage';
 import ForgotPw from './pages/forgotPw';
+import Profile from './pages/profile';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -14,7 +15,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<SignIn />} />
         <Route path="/register" element={<SignUp />} />
-        <Route path="/forgotpassword" element={<ForgotPw />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/forgotpassword" element={<ForgotPw />} />  
       </Routes>
     </Router>
   </React.StrictMode>,

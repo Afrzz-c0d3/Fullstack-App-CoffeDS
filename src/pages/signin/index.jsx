@@ -1,6 +1,6 @@
 import axios from "axios";
 import Footer from "../footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2"; // Tambahkan SweetAlert
 
@@ -9,6 +9,15 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false); // State untuk loading
+
+  // Cek apakah user sudah login dengan token
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      // Jika user sudah login, redirect ke halaman utama
+      navigate("/");
+    }
+  }, [navigate]);
 
   const login = async () => {
     setLoading(true); // Mulai loading saat klik login
@@ -19,13 +28,13 @@ const SignIn = () => {
       });
       console.log("Login Success");
       if (response.status === 200) {
-        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("token", response.data?.token);
         Swal.fire({
           icon: "success",
           title: "Login Successful",
           text: "Welcome back!",
         }).then(() => {
-          navigate("/");
+          navigate("/"); // Redirect ke home setelah login sukses
         });
       }
     } catch (error) {
@@ -103,7 +112,12 @@ const SignIn = () => {
               id="password"
               required
             />
-            <Link to="/forgotpassword" className="font-bold text-base lg:text-xl leading-6 cursor-pointer active:text-amber-700 select-none underline mt-2 lg:mt-5">Forgot Password?</Link>
+            <Link
+              to="/forgotpassword"
+              className="font-bold text-base lg:text-xl leading-6 cursor-pointer active:text-amber-700 select-none underline mt-2 lg:mt-5"
+            >
+              Forgot Password?
+            </Link>
             <button
               type="submit"
               className={`flex justify-center items-center mt-6 lg:mt-[10%] border bg-yellow-500 h-14 lg:h-20 shadow-xl shadow-[rgba(255, 186, 51, 0.4)] rounded-3xl w-full cursor-pointer font-bold text-lg lg:text-xl active:bg-yellow-600 ${
