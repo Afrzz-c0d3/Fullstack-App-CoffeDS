@@ -38,7 +38,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="relative top-0">
+    <div className="relative shadow-lg top-0">
       <div className="flex items-center justify-between h-32 text-lg z-[99]">
         <div className="flex-[2] flex items-center justify-center">
           <div className="mr-2 cursor-pointer">
@@ -64,7 +64,9 @@ const Navbar = () => {
           >
             {show && (
               <div className="absolute flex flex-col p-4  bg-white gap-4 shadow-md right-28 top-20 rounded-md">
-                <div className="text-sm font-semibold">Profile</div>
+                <div className="text-sm font-semibold">
+                  <Link to="/profile">Profile</Link>
+                </div>
                 <div className="border-b border-slate-300"></div>
                 <div
                   onClick={handleLogout}

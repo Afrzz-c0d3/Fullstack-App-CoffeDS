@@ -417,7 +417,7 @@ const Hero = () => {
               Let&apos;s see the deals and pick yours
             </p>
           </div>
-          <div className="btn-member flex h-12 lg:h-14 items-center justify-center  rounded-2xl p-4 lg:w-[200px] cursor-pointer font-bold text-base active:bg-yellow-600 lg:ml-auto">
+          <div className="btn-member flex h-12 lg:h-14 items-center justify-center bg-yellow-500  rounded-2xl p-4 lg:w-[200px] cursor-pointer font-bold text-base active:bg-yellow-600 lg:ml-auto">
             <p>See Promo</p>
           </div>
         </div>

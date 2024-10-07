@@ -1,95 +1,77 @@
+import axios from "axios";
+import Footer from "../footer";
+import Navbar from "../homepage/navbar";
+import { useEffect, useState } from "react";
+
 const Profile = () => {
+  const [profile, setProfile] = useState();
+  const token = localStorage.getItem("token");
+  const getProfile = async () => {
+    try {
+      const response = await axios.get("http://localhost:1234/user/profile", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(response.data);
+      
+      setProfile(response?.data?.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getProfile();
+  }, []);
   return (
-    <div className="">
-      <h2 className="mt-16 ml-[168px]">User Profile</h2>
-      <div className="rounded-xl ml-[168px] mr-[185px] w-[80%] h-[1000px]">
-        <div className="flex flex-col items-center">
-          <div className="profile">
-            <img src="/assets/img/profile2.png" alt />
-            <div className="userName">
-              <h3>Zulaikha</h3>
-              <p>zulaikha17@gmail.com</p>
-            </div>
+    <div>
+      <Navbar />
+      <div>
+        <div className="flex items-start justify-center gap-12 px-24 py-14 ">
+          <div className="w-1/4 shadow-xl h-[358px] flex flex-col items-center justify-center  gap-4 rounded-md">
+            <img
+              src={profile?.image}
+              alt="user"
+              className="w-32 h-32 rounded-full object-cover"
+            />
+            <div className="text-xl font-bold">{profile?.username}</div>
+            <div className="text-sm text-slate-500">{profile?.email}</div>
           </div>
-          <form>
-            <div className="profileButton">
-              <div className="choosePhoto" type="submit">
-                Choose photo
+          <div className="w-3/4 p-8 gap-4 h-[358px] flex flex-col rounded-md shadow-xl">
+            <div className="flex items-center justify-between">
+              <div className="text-xl text-slate-500 font-bold px-2">
+                Contacts
               </div>
-              <div className="removePhoto" type="submit">
-                Remove photo
-              </div>
-              <div className="editPassword" type="submit">
-                Edit Password
-              </div>
-              <p>Do you want to save the change?</p>
-              <div className="saveChange" type="submit">
-                Save Change
-              </div>
-              <div className="cancel" type="submit">
-                Cencel
-              </div>
-              <div className="logout" type="submit">
-                Log out
-              </div>
+              <div className="text-lg">Icon pen</div>
             </div>
-          </form>
-        </div>
-        <div className="row profileDetail">
-          <div className="col-lg-12 contacts">
-            <h3>Contacts</h3>
-            <form className="row form-contacts">
-              <div className="col-sm-8 formEmail">
-                <label htmlFor="email">Email adress :</label>
+            <div className="grid grid-cols-2 gap-4 mt-4">
+              <div className="text-slate-400 font-bold flex flex-col p-2">
+                Email Address :
                 <input
                   type="email"
-                  id="email"
-                  placeholder="zulaikhha17@gmail.com"
+                  className=" border-b border-slate-800 text-md text-black font-medium p-2 outline-none"
                 />
-                <label htmlFor="adres">Delivery adress :</label>
+              </div>
+              <div className="text-slate-400 font-bold flex flex-col p-2">
+                Number Phone :
+                <input
+                  type="number"
+                  className=" border-b border-slate-800 text-md text-black font-medium p-2 outline-none"
+                />
+              </div>
+              <div className="py-10 text-slate-400 font-bold flex flex-col p-2">
+                Delivery Address :
                 <input
                   type="text"
-                  id="adress"
-                  placeholder="Iskandar Street No. 67 Block A Near Bus Stop"
+                  className=" border-b border-slate-800 text-md text-black font-medium p-2 outline-none"
                 />
               </div>
-              <div className="col-sm-4 form-phone">
-                <label htmlFor="phone">Mobile number :</label>
-                <input type="text" id="phone" placeholder="(+62)813123456782" />
-              </div>
-            </form>
-          </div>
-          <div className="col-lg-12 details">
-            <h3>Details</h3>
-            <form className="row form-details">
-              <div className="col-sm-8 form-display-first-last">
-                <label htmlFor="name">Display name :</label>
-                <input type="text" id="name" placeholder="Zulaikha" />
-                <label htmlFor="first">First name :</label>
-                <input type="text" id="first" placeholder="Zulaikha" />
-                <label htmlFor="last">Last name :</label>
-                <input type="text" id="last" placeholder="Nirmala" />
-              </div>
-              <div className="col-sm-4 form-date">
-                <label htmlFor="date">DD/MM/YY</label>
-                <input type="date" id placeholder="03/04/90" />
-              </div>
-            </form>
-          </div>
-          <div className="gender">
-            <label className="radio-container">
-              Male
-              <input type="radio" defaultChecked="checked" name="radio" />
-              <span className="checkmark" />
-            </label>
-            <label className="radio-container">
-              Female
-              <input type="radio" name="radio" />
-              <span className="checkmark" />
-            </label>
+            </div>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

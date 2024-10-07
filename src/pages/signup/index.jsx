@@ -164,7 +164,9 @@ const SignUp = () => {
           <p>Create now</p>
         </div>
       </div>
-      <Footer />
+      <div className="flex items-start justify-center gap-12 px-28 py-14 ">
+        <Footer />
+      </div>
     </div>
   );
 };
