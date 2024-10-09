@@ -1,23 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './index.css';
-import SignIn from './pages/signin';
-import SignUp from './pages/signup';
-import Homepage from './pages/homepage';
-import ForgotPw from './pages/forgotPw';
-import Profile from './pages/profile';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter as Router } from "react-router-dom";
+import App from "./App"; // Impor App sebagai komponen utama
+import "./index.css";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Router>
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/login" element={<SignIn />} />
-        <Route path="/register" element={<SignUp />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/forgotpassword" element={<ForgotPw />} />  
-      </Routes>
+      <App /> {/* Render komponen App */}
     </Router>
-  </React.StrictMode>,
+  </React.StrictMode>
 );

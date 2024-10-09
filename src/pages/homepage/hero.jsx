@@ -1,23 +1,41 @@
 import Footer from "../footer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons"; // Import ikon kaca pembesar
 
 const Hero = () => {
   return (
     <div>
-      <div className="w-full bg-cover bg-center">
+      <div className="relative w-full bg-cover bg-center">
         <img src="/assets/img/hero.png" alt className="w-full" />
-        <div className="absolute text-white font-semibold text-5xl top-52 left-36 leading-[70px]">
+
+        {/* <!-- Teks Utama --> */}
+        <div className="absolute text-white font-semibold text-5xl top-[80px] left-36 leading-[70px]">
           Start Your Day With <br />
           Coffee and Good Meals
         </div>
-        <p className="absolute text-white font-semibold text-xl top-[350px] left-36 leading-7">
+        <p className="absolute text-white font-semibold text-xl top-[240px] left-36 leading-7">
           We Provide a high quality beans, good taste, and healthy <br />
           meals made by love just for you. Start your day with us <br />
           for a bigger smile
         </p>
-        <div className="flex bg-yellow-500 items-center justify-center absolute  w-[250px] h-[60px] py-5 rounded-xl left-36  shadow-lg  top-[500px] cursor-pointer text-amber-900 font-semibold active:bg-yellow-600">
+
+        {/* <!-- Tombol Get Started --> */}
+        <div className="flex bg-yellow-500 items-center justify-center absolute w-[250px] h-[60px] py-5 rounded-xl left-36 shadow-lg top-[380px] cursor-pointer text-amber-900 font-semibold active:bg-yellow-600">
           Get Started
         </div>
+
+        {/* <!-- Search Bar --> */}
+        <div className="absolute top-[80px] right-36 flex items-center space-x-2 bg-white py-2 px-4 rounded-full shadow-lg">
+          <FontAwesomeIcon icon={faSearch} className="text-gray-500 ml-2" />{" "}
+          {/* Ikon kaca pembesar */}
+          <input
+            type="search"
+            placeholder="Search"
+            className="font-semibold px-2 py-2 w-[250px] rounded-full text-gray-800 focus:outline-none"
+          />
+        </div>
       </div>
+
       <div
         className="flex items-center justify-around bg-white h-[200px] w-[1240px]
       absolute top-[700px] left-[10%] rounded-xl shadow-xl"
